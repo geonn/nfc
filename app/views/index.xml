@@ -1,0 +1,9 @@
+<Alloy>
+	<Window class="container">
+		<View width="Ti.UI.Fill" height="Ti.UI.Fill" layout="vertical">
+			<Label>Scan a tag</Label>
+			<TextArea id="tagData" color="black"/>
+			<Button width="Ti.UI.Size" height="Ti.UI.Size" onClick="onClear">Clear</Button>
+		</View>
+	</Window>
+</Alloy>
