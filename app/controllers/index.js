@@ -2,6 +2,8 @@ var nfc = require('ti.nfc');
 var nfcAdapter = null;
 var dispatchFilter = null;
 
+!!!!
+
 $.index.addEventListener('open', function(e) {
 	setupNfc();
 });
