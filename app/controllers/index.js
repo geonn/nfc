@@ -1,4 +1,3 @@
-var nfc = require('ti.nfc');
 var nfcAdapter = null;
 var dispatchFilter = null;
 
@@ -30,6 +29,7 @@ function setupNfc() {
 		nfcAdapter.enableForegroundDispatch(dispatchFilter);
 		console.log("enable foreground dispatch: "+nfcAdapter.enableForegroundDispatch(dispatchFilter));
 	});
+	
 	act.addEventListener('pause', function(e) {
 		nfcAdapter.disableForegroundDispatch();
 		console.log("disable foreground dispatch: "+nfcAdapter.disableForegroundDispatch());
@@ -49,13 +49,13 @@ function setupNfc() {
 	});
 	
 	var textRecord = nfc.createNdefRecordText({
-		text: "NDEF Push Sample"
+		text: "Push Text"
 	});
 	var msg = nfc.createNdefMessage({
 		records: [ textRecord ]
 	});
-	nfcAdapter.setNdefPushMessage(msg);
 	console.log("set ndef push message: "+nfcAdapter.setNdefPushMessage(msg));
+	nfcAdapter.setNdefPushMessage(msg);
 }
 
 function handleDiscovery(e) {
@@ -69,6 +69,13 @@ function handleDiscovery(e) {
 	}, 2);
 }
 
-function onClear(e) {
-	$.tagData.value = "";
+function setValue(e) {
+	var textRecord = nfc.createNdefRecordText({
+		text: $.tagData.value
+	});
+	var msg = nfc.createNdefMessage({
+		records: [ textRecord ]
+	});
+	nfcAdapter.setNdefPushMessage(msg);
+	
 }
